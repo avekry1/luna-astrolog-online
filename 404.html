@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Луна: личный астролог</title>
+<script>
+// D-197a: адрес с меткой в пути (luna-astrolog.online/luna_008_sovmestimost?utm_…) → страница Луны с ?start=<метка>
+// и теми же параметрами; клик там запишет track.js. Собрано deploy/fb-clicks/build_start_pages.py --online.
+(function () {
+  var seg = '';
+  try { seg = decodeURIComponent(location.pathname).replace(/^\/+|\/+$/g, '').replace(/\.html$/, ''); } catch (e) {}
+  var P = new URLSearchParams(location.search);
+  if (!P.get('start') && /^[A-Za-z0-9_-]{1,52}$/.test(seg)) P.set('start', seg);
+  var q = P.toString();
+  location.replace('/' + (q ? '?' + q : '') + location.hash);
+})();
+</script>
+</head>
+<body><p><a href="/">Луна: личный астролог</a></p></body>
+</html>
